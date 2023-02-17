@@ -13,21 +13,39 @@
         $(function(){
             //문제
             //1. header중 class가 happy 인 요소의 글자색과 배경색을 변경
-
+            $("header.happy").css("color","blue").css("background-color","yellow");
             //2.section중 class가 one 인 요소중 첫번째요소의 border와글꼴 변경
-
+            $("section.one").eq(0).css({
+                "border":"3px solid gray",
+                "font-family":"Jua"
+            });
             //3.section중 class가 one 인 요소중 두번째요소의 img의src 변경
-
+            $("section.one img").eq(1).attr("src","../image/jquery_image/11.png");
+            
             //4. 전체 img중 첫번째 img 의 src를 얻어서 아이디가 photo인
             //    이미지의 src에다 넣어주세요
-
+            let photo=$("img").eq(0).attr("src");
+            $("#photo").attr("src",photo);
             //5. ul 아래의 모든 li 의 글꼴,글자색 변경
-
+            $("ul li").css({
+                "font-family":"Gamja Flower",
+                "color":"green"
+            });
             //6. ul 의 li 에 마우스를 올리면 글자색이 빨강으로
             //             벗어나면 다시 원래색으로 변경
-        
-            //7.section 태그 아래의 h3 의 border,글자색,글꼴 변경
+            $("ul li").mouseover(function(){
+                $(this).css("color","red").css("width","130px");
+            });
 
+            $("ul li").mouseout(function(){
+                $(this).css("color","green");
+            });
+            //7.section 태그 아래의 h3 의 border,글자색,글꼴 변경
+            $("section h3").css({
+                "border":"5px inset gray",
+                "color":"gray",
+                "font-family":"궁서체"
+            });
         });
     </script>
 </head>
