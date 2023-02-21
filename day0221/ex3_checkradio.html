@@ -74,6 +74,28 @@
     //버튼 이벤트 클릭시 학력사항 출력
     //구현가능한 언어 총 x개 선택 출력 그다음에 목록들 출력(목록앞에 번호 출력:1부터)
     //단 학력사항을 선택 안햇을경우 경고 "학력사항은 반드시 선택해야만 합니다"
+
+    $(".btnview").click(function(){
+        let s="";
+        let grade_len=$("input[name='grade']:checked").length;
+        if(grade_len==0){
+            alert("학력사항은 반드시 선택해야만 합니다");
+            return;//함수 종료
+        }
+
+        s="최종학력 : "+$("input[name='grade']:checked").val()+"<br>";
+
+        //구현 가능 언어
+        let lang_len=$("input[name='lang']:checked").length;
+        s+="구현 가능한 언어 총 "+lang_len+"개를 선택하였습니다<br>";
+
+        //선택한 언어 앞에 번호 붙여서 출력하기
+        $("input[name='lang']:checked").each(function(idx,item){
+            s+=idx+1+":"+$(this).val()+"<br>";
+        });
+        $("div.view").html(s);
+
+    });
  </script>
 </body>
 </html>
