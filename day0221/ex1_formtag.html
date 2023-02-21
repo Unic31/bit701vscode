@@ -33,7 +33,28 @@
                         class="form-check-input">운전면허
                     </label>
             </tr>
-
+            <tr>
+                <th width="100" bgcolor="orange">글자색</th>
+                <td>
+                    <label>
+                        <input type="color" id="tcolor" value="#ccffff">
+                    </label>
+            </tr>
+            <tr>
+                <th width="100" bgcolor="orange">생년월일</th>
+                <td>
+                    <label>
+                        <input type="date" id="birth" value="2023-01-01">
+                    </label>
+            </tr>
+            <tr>
+                <th width="100" bgcolor="orange">점수</th>
+                <td>
+                    <label>
+                        <input type="number" id="score" value="50"
+                        step="5" class="form-control">
+                    </label>
+            </tr>
             <tr>
                 <td colspan="2"  align="center">
                     <button type="submit" class="btn btn-outline-danger"
@@ -52,12 +73,24 @@
 
             let name=$("#txtname").val();
 
+            //체크박스 value 값과 체크상태 알아보기
+            //checkbox 는 val() 은 무조건 on(value지정이 안된경우)
+            //is(":checked") : true/false 체크상태 반환
+            console.log($("#chklic").val(),$("#chklic").is(":checked"));
+            let lic=$("#chklic").is(":checked")?"있음":"없음";
+
+            //글자색 읽기
+            let tcolor=$("#tcolor").val();
 
             $("div.view").html(
                 `
                 이름 : ${name}<br>
+                운전면허 : ${lic}<br>
+                글자색 : ${tcolor}<br>   
+                생년월일 : ${$("#birth").val()}<br>
+                점수 : ${$("#score").val()}점
                 `
-            )
+            ).css("color",tcolor);
 
         });
     </script>
