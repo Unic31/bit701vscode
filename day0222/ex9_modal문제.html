@@ -5,8 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+​ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+       body, body *{
+            font-family: 'Single Day';
+        }
+      .photo{
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    </style>
+
 </head>
 <body>
+<!-- The Modal -->
+<div class="modal" id="myFoodModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Food List</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <img src="" class="food_photo img-thumbnail" style="max-width: 100%;">
+          <br><br>
+          <h3 class="food_name"><b></b></h3>
+          <h4  class="food_price"><b></b>원</h4>
+
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
 <script>
     let food_data={
         "foodlist":[
@@ -25,6 +71,52 @@
         ]
     }
 </script>
-    
+<h4>BS5 의 Modal 연습</h4>
+<table class="table table-striped" style="width: 400px;">
+    <thead>
+        <tr bgcolor="orange">
+            <th width="50">번호</th>
+            <th width="200">메뉴명</th>
+            <th width="100">가격</th>
+        </tr>
+    </thead>
+    <tbody>
+    <script>
+        $.each(food_data.foodlist,function(idx,item){
+            let s=`
+                <tr>
+                    <td align=center>${idx+1}</td>
+                    <td>
+                        <img src="${item.foodsrc}" class="img-thumbnail photo"
+                        data-bs-toggle="modal" data-bs-target="#myFoodModal">
+                        <b>${item.foodname}</b>
+                    </td>
+                    <td align=right>
+                        <b>${item.foodprice}</b>
+                    </td>
+                </tr>
+            `;
+
+            document.write(s);
+        });
+    </script>
+    </tbody>
+</table>
+
+<script>
+    $("img.photo").click(function(){
+        //이미지 얻어서 modal창에 넣기
+        let myphoto=$(this).attr("src");
+        $(".food_photo").attr("src",myphoto);
+
+        //메뉴명 넣기
+        let myname=$(this).next().text();
+        $(".food_name b").text(myname);
+
+        //가격 넣기
+        let myprice=$(this).parent().next().find("b").text();
+        $(".food_price b").text(myprice);
+    });
+</script>
 </body>
 </html>
