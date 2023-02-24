@@ -52,36 +52,16 @@
                     $(this).val("");
                     return;
                 }
-                //모든 숫자를 분리하여 이미지로 나타내기
-                if($(this).val().length==3){
-                    let one=parseInt($(this).val()/100);
-                    let two=parseInt(($(this).val()%100)/10);
-                    let three=$(this).val()%10;
-
-                    let s=`
-                    <img src="../image/num/${one}.gif">
-                    <img src="../image/num/${two}.gif">
-                    <img src="../image/num/${three}.gif">                        
-                    `;
-
-                    $("div.photo").html(s);                    
-                }else if($(this).val().length==2){
-                    let one=parseInt($(this).val()/10);
-                    let two=$(this).val()%10;
-
-                    let s=`
-                    <img src="../image/num/${one}.gif">
-                    <img src="../image/num/${two}.gif">
-                     `;
-
-                    $("div.photo").html(s);                    
-                }else{
-                    let s=`
-                    <img src="../image/num/${$(this).val()}.gif">
-                     `;
-
-                    $("div.photo").html(s);   
+               
+                //숫자를 분리하여 이미지로 나타내기
+                let s="";
+                for(let i=0;i<$(this).val().length;i++){
+                    // i번지에 해당하는 숫자 추출
+                    let num=$(this).val().charAt(i);
+                    s+=`<img src="../image/num/${num}.gif">`;
                 }
+                $(".photo").html(s);
+
 
                 if($(this).val()>rnd_num){
                     $(".result").html(`${$(this).val()}보다 작습니다`);
@@ -109,7 +89,7 @@
 <body>
 
      <input type="text" class="form-control" id="txtnum"
-     autofocus maxlength="3" placeholder="숫자입력후엔터">
+     autofocus placeholder="숫자입력후엔터">
 
      <div class="photo">111</div>
 
